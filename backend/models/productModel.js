@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
     sizes:{ type: Array, required: true },
     bestseller:{ type: Boolean, default: false },
     date:{ type: Date, required: true }
-})
+}, { timestamps: true } )  // added timestamps to track createdAt and updatedAt fields
 
 const productModel = mongoose.models.product || mongoose.model('product', productSchema); 
 
