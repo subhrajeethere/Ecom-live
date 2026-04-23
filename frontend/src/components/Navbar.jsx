@@ -162,7 +162,7 @@ function Navbar() {
           <NavLink
             onClick={() => setVisible(false)}
             className="py-2 pl-6 border"
-            to="https://forever-admin-omega-liard.vercel.app/"
+            to="https://ecom-admin-mocha.vercel.app/"
           >
             Admin Panel
           </NavLink>
