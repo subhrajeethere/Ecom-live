@@ -49,7 +49,7 @@ function Navbar() {
 
         <NavLink
           target="_blank"
-          to="https://forever-admin-omega-liard.vercel.app/"
+          to="https://ecom-admin-mocha.vercel.app/"
           className="flex flex-col items-center gap-1 "
         >
           <span className="border px-5 text-sm py-1 rounded-full -mt-1">
