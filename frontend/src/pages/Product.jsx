@@ -24,29 +24,40 @@ const Product = () => {
     };
     fetchProductData();
   }, [productId, products]);
+
   return productData ? (
     <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
-      <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
-        {/*---------- product images ----------*/}
-        <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-row">
-          <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full">
+
+      {/* ---------------- Updated Responsive Product Layout ---------------- */}
+      <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+
+        {/* Left Side – Images */}
+        <div className="flex-1 flex flex-col-reverse sm:flex-row gap-4">
+
+          {/* Thumbnails */}
+          <div className="flex sm:flex-col gap-3 overflow-x-auto sm:overflow-y-auto sm:w-[18%]">
             {productData.image.map((item, index) => (
               <img
+                key={index}
                 onClick={() => setImage(item)}
                 src={item}
-                key={index}
-                className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer"
+                className="w-20 h-20 sm:w-full sm:h-auto object-cover rounded-md border cursor-pointer flex-shrink-0"
                 alt="product_image"
               />
             ))}
           </div>
 
-          <div className="w-4 sm:w-[80%]">
-            <img src={image} className="w-full h-auto" alt="product_img" />
+          {/* Main Image */}
+          <div className="flex-1">
+            <img
+              src={image}
+              className="w-full h-auto rounded-lg object-cover"
+              alt="product_img"
+            />
           </div>
         </div>
 
-        {/*---------- product info ----------*/}
+        {/* Right Side – Product Info */}
         <div className="flex-1">
           <h1 className="font-medium text-2xl">{productData.name}</h1>
 
@@ -63,9 +74,12 @@ const Product = () => {
             {currency}
             {productData.price}
           </p>
+
           <p className="mt-5 text-gray-500 md:w-4/5">
             {productData.description}
           </p>
+
+          {/* Sizes */}
           <div className="flex flex-col gap-4 my-8">
             <p>Select Size</p>
             <div className="flex gap-2">
@@ -83,6 +97,7 @@ const Product = () => {
             </div>
           </div>
 
+          {/* Add to Cart */}
           <button
             onClick={() => addToCart(productData._id, size)}
             className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
@@ -100,7 +115,7 @@ const Product = () => {
         </div>
       </div>
 
-      {/*---------- Description & Review Section ----------*/}
+      {/* ---------- Description Section ---------- */}
       <div className="mt-20">
         <div className="flex">
           <b className="border px-5 py-3 text-sm">Description</b>
@@ -110,21 +125,16 @@ const Product = () => {
         <div className="flex flex-col gap-4 border px-6 py-4 text-sm text-gray-500">
           <p>
             Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia.
+            It has roots in a piece of classical Latin literature from 45 BC.
           </p>
           <p>
             Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia.
+            It has roots in classical Latin literature from 45 BC.
           </p>
         </div>
       </div>
 
-      {/* ---------- Display related products ---------- */}
-
+      {/* ---------- Related Products ---------- */}
       <RelatedProducts
         category={productData.category}
         subCategory={productData.subCategory}
